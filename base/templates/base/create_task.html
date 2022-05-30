@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+
+<h2>Create Task</h2>
+
+<form method = "POST" >
+    {% csrf_token %}
+
+    <div class="mb-3">
+
+    {% for t in task %}
+
+        <label for="{{t.label}}" class="form-label">{{t.label}}</label>
+        {{t}}
+    
+    {% endfor %}
+
+    </div>
+    <div class="col-auto">
+
+        <button type = "submit" class="btn btn-primary mb-3" value = "Create">Create</Button>
+      </div>
+    
+
+</form>
+
+
+    
+
+
+
+{% endblock %}

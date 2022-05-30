@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+{{error}}
+
+<br><br><br>
+
+
+{%if context == 'login' %}
+
+    <form class = "row g-3" method = "POST">
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="username" name="username" placeholder="username">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+            <input type="password" class="form-control" id="password" name="password">
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Login</button>
+        </div>
+    </form>
+
+    <p> if Not Registered <a href="{% url 'register' %}">Register</a>
+
+
+
+{% else %}
+
+    <form class="row g-2" method = "POST" >
+
+        {%csrf_token%}
+
+        {% for tag in form %}
+            <label id = " {{tag.label}} " > {{tag.label}} </label>
+            {{tag}}
+        {% endfor %}
+        
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Register</button>
+        </div>
+
+    </form>
+
+
+    <p> if alreday Registered <a href="{% url 'login' %}">Login</a>
+
+{% endif %}
+
+
+
+{% endblock content %}

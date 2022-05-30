@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<h2>Update Form</h2>
+
+<br> 
+<br>
+
+<form method = 'POST' >
+
+    {%csrf_token%}
+
+    {% for t in task%}
+
+    <label for="{{t.label}}" class="form-label">{{t.label}}</label>
+        {{t}}
+
+    {% endfor %}
+
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Update</button>
+      </div>
+    
+
+</form>
+
+
+{% endblock %}

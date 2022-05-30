@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{%block content%}
+
+
+
+{% if request.user.is_authenticated %}
+
+<br>
+<br>
+    <h3 > Hello {{request.user}}</h3>
+
+    <br>
+    
+    <div class="col-auto">
+
+        <button type="submit" class="btn btn-warning mb-3"><a href="{% url 'task_list' %}"> View Task</a></button>
+        <button type="submit" class="btn btn-warning mb-3"><a href="{% url 'create_task' %}"> Create Task</a></button>
+        
+    </div>
+
+
+{% else %}
+
+    <a href="{% url 'login' %}">Login</a>
+    or
+    <a href="{% url 'register' %} ">Register</a>
+
+{% endif %}
+
+{% endblock content %}

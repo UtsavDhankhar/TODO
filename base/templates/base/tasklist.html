@@ -1,0 +1,88 @@
+{% extends 'base/base.html' %}
+{%block content%}
+
+
+<h1> Hello</h1>
+
+
+
+<form class="row g-3" method = "GET">
+  <div class="container">
+    <div class="row">
+      <div class="col-1">
+        <div class="col-auto">
+          <label for="search" class="visually-hidden"></label>
+          <input type="text" class="form-control" id="search" name = "search" placeholder"input text" >
+        </div>
+      </div>
+
+      <div class = "col-1">
+        <select class="form-select col-auto" aria-label=".form-select-sm example" name="select">
+          <option selected value="1">Today</option>
+          <option value="2">This Week</option>
+          <option value="3">This Month</option>
+        </select>
+      </div>
+      <div class = "col">
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  </form>
+
+
+
+<br>
+
+<div class="badge bg-primary text-wrap" style="width: 15rem;">
+  Total Tasks are : {{total_task}}
+</div>
+
+<div class="badge bg-success text-wrap" style="width: 15rem;">
+  Completed Tasks are : {{complete}}
+</div>
+
+<div class="badge bg-warning text-wrap" style="width: 15rem;">
+  Incomplete Tasks are : {{incomplete}}
+</div>
+<br>
+<br>
+
+<ul>
+
+  <div class="col-auto">
+    <button type="submit" class="btn btn-success mb-3"><a href="{% url 'create_task' %} "><span style="color:white;" >Create Task </span></a></button>
+  </div>
+
+  <br>
+
+{% for task in model %}
+
+    <li>
+        {% if task.complete == True %}
+        <a href = "{% url 'detail' task.id %}"> <h5 style="color:green;"><strike> {{ task.title }} </strike></h5> </a>
+        {% else %}
+        <a href = "{% url 'detail' task.id %}"> <h5 style="color:Grey;">{{ task.title }} </h5> </a>
+        {% endif %}
+
+        {% comment %} <a href = "{% url 'detail' task.id %}"> View </a>   {% endcomment %}
+        <a href = "{% url 'update_task' task.id %}"> &#10003 </a>
+        <a href = "{% url 'delete_task' task.id %}"> Del </a>
+        <br>
+        <br>
+
+    </li>
+  
+
+
+{% endfor %}
+
+</ul>
+
+
+{%endblock content%}
